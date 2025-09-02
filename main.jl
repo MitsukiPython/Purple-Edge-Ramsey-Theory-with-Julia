@@ -1,15 +1,14 @@
 using Pkg
 # installing packages
-Pkg.add("LightGraphs")
+Pkg.add("Graphs")
 Pkg.add("GraphMakie")
 Pkg.add("Combinatorics")
 Pkg.add("SimpleGraphs")
 
 # importing them
-using LightGraphs
-using GraphMakie, GLMakie, Graphs
-using SimpleGraphs
 using Graphs
+using GraphMakie, GLMakie
+using SimpleGraphs
 using Combinatorics
 
 # the K5 counterexample was uniquely found up to isomorphism using pigeon principle and inclusion exclusion principle
