@@ -43,11 +43,11 @@ end
 function has_monochromatic_clique(red_subgraph, blue_subgraph, s, t) 
     # we start with our counterexample and add vertices
     if (clique_number(red_subgraph) >= s)
-        print("RED K$s DETECTED")
+        println("RED K$s DETECTED")
         return true
     end
     elseif (clique_number(blue_subgraph) >= t)
-        print("BLUE K$t DETECTED")
+        println("BLUE K$t DETECTED")
         return true
     end
     else
@@ -62,6 +62,18 @@ function add_edge_colour(graph, edge, colour)
 
 end
 
+
+
+
+# this function indexes to the next possible edge set in python
+function make_next_graph(graph, edge) 
+    # this function will take in an edge set and index like binary. let red to 0 and blue to 1 for the remaining edges
+    # 00000, 00001, 00010, 00011 etc. We will modify the edge sets with this indexing style, by iterating through the edges
+    # we need to get the unions and the exclusion functions in julia. Just excluding the unneeded functions. 
+    # we do not actually know the length of the edge set, so length arguments with #defined constants would not work. What works for K6 must work for K7
+
+
+end
 
 
 
