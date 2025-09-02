@@ -1,56 +1,59 @@
 using Pkg
-
 # installing packages
-Pkg.add("Graphs")
-Pkg.add("Combinatorics")
+Pkg.add("LightGraphs")
 Pkg.add("GraphMakie")
+Pkg.add("Combinatorics")
+Pkg.add("SimpleGraphs")
 
 # importing them
+using LightGraphs
 using GraphMakie, GLMakie, Graphs
+using SimpleGraphs
 using Graphs
 using Combinatorics
 
 # the K5 counterexample was uniquely found up to isomorphism using pigeon principle and inclusion exclusion principle
-# (a,b) denotes the edge connecting v_a and v_b where 0<=a,b<=5
-# The number 1 is red, the number 2 is blue, the number 3 is purple.
-const base_k5_counterexample = Dict(
-    (1,2)=>3
-    (1,3)=>2
-    (1,4)=>2
-    (1,5)=>3
-    (2,3)=>3
-    (2,4)=>1
-    (2,5)=>2
-    (3,4)=>3
-    (3,5)=>1
-    (4,5)=>3
-)
-
-const base_k4_counterexample = Dict(
-    (1,2)=>3
-    (2,3)=>3
-    (3,4)=>3
-    (1,4)=>3
-    (1,3)=>1
-    (2,4)=>2
-)
+# (a,b) denotes the edge connecting v_a and v_b where 0<=a,b<=5. 
+const K5_COUNT_RED = [(3,5),(2,4)]
+const K5_COUNT_BLUE = [(1,4), (1,3), (2,5)]
+const K5_COUNT_PURPLE = [(1,2), (2,3), (3,4), (4,5),(1,5)]
+const K5_COUNT_RED_PURPLE = union(K5_COUNT_RED, K5_COUNT_PURPLE) 
+const K5_COUNT_BLUE_PURPLE = union(K5_COUNT_BLUE, K5_COUNT_PURPLE)
+# our unique R(4,4,C4) > 4 counterexample up to isomorphism
+const K4_COUNT_RED = [(1,3)]
+const K4_COUNT_BLUE = [(2,4)]
+const K4_COUNT_PURPLE = [(1,2),(2,3),(3,4),(1,4)]
+const K4_COUNT_RED_PURPLE = union(K4_COUNT_RED, K4_COUNT_PURPLE)
+const K4_COUNT_BLUE_PURPLE = union(K4_COUNT_BLUE, K4_COUNT_PURPLE)
 
 # our main function
-function main() 
+function main()
     s = 4
     t = 4
     n = 5
-    base_graph = deepcopy(base_k5_counterexample) 
-    # we start with our counterexample and add vertices
+    # where we are looking for R(s,t,C_n)
+
+    
     
 
-    println("R($s,$t,C$n) = $target_size ")
+    
 
 end
 
-
-# we check for a monochromatic Kn where n is the clique_size and colour is the colour (from 1-3)
-function has_monochromatic_clique(graph, clique_size, colour) 
+# we substitute a red/purple and blue/purple subgraph to see if a red Ks or blue Kt is present
+function has_monochromatic_clique(red_subgraph, blue_subgraph, s, t) 
+    # we start with our counterexample and add vertices
+    if (clique_number(red_subgraph) >= s)
+        print("RED K$s DETECTED")
+        return true
+    end
+    elseif (clique_number(blue_subgraph) >= t)
+        print("BLUE K$t DETECTED")
+        return true
+    end
+    else
+        return false
+    end
 
 end
 
@@ -60,16 +63,6 @@ function add_edge_colour(graph, edge, colour)
 
 end
 
-# this function accepts an edge as an argument and returns the colour
-function retrieve_edge_colour(edge)
-
-end
 
 
 
-# printing the graph once colourings are complete
-function print_graph(graph) 
-
-
-
-end
